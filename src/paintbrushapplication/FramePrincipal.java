@@ -22,7 +22,7 @@ public class FramePrincipal extends JFrame{
        this.setSize(400,400);
        this.setLocationRelativeTo(null);
        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-       this.setTitle("paint");
+       this.setTitle("PaintBrush");
        
    
        this.add(new Tela());

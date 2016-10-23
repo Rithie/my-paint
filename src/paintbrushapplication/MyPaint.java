@@ -16,6 +16,7 @@ public class MyPaint {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        FramePrincipal mainframe = new FramePrincipal();
     }
-    
+
 }

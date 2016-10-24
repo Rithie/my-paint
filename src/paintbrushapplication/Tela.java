@@ -43,11 +43,11 @@ class Tela extends JPanel implements ActionListener {
 
     JButton cbtn, fbtn, SMbtn, Ubtn, Rbtn, Sbtn, Lbtn,SEbtn,Dbtn;
 
-    Color colorBK = (Color.BLACK), colorWH = (Color.WHITE);
+    Color colorBK = (Color.BLACK), colorWH = (Color.RED);
 
     public Tela() {
 
-        Figura user_action = Figura.PONTO;
+        final Figura user_action = Figura.PONTO;
 
         setBorder(BorderFactory.createLineBorder(Color.black));
         this.setLayout(new BorderLayout());
@@ -124,22 +124,51 @@ class Tela extends JPanel implements ActionListener {
         this.add(btnPanel1, BorderLayout.WEST);
 
         //listeners
+        // quando o mouse é clicado, o ponto inicial é registrado nas variáveis x e y
         addMouseListener(new MouseAdapter() {
-
+              public void mousePressed(MouseEvent e) {
+                x = e.getX();
+                y = e.getY();
+                System.out.println("Mouse Debug <pressed> : " + x + " x | " + y + " y");
+                setCursor( Cursor.getPredefinedCursor(Cursor.HAND_CURSOR) );
+              }
         });
-
+        //
         addMouseMotionListener(new MouseAdapter() {
             public void mouseDragged(MouseEvent e) {
                 width = e.getX();
                 height = e.getY();
-                System.out.println("Mouse <dragged> : " + width + " w | " + height + " h");
+                System.out.println("Mouse Debug <dragged> : " + width + " w | " + height + " h");
                 repaint();
                 // adiciona cursor especifico quando o mouse eh arrastado.
                 setCursor(
                     Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
             }
 
+            // quando o btn do mouse for solto, pegar a posição final de salvar
+            //a forma geométrica em um array
+            public void mouseReleased(MouseEvent e) {
+                    width = e.getX();
+                    height = e.getY();
+                    if (user_action == Figura.PONTO) {
+                        //shape.add(new Lines(x, y, w, h, c));
+                    } else if (user_action == Figura.RETA) {
+                        //shape.add(new Rectangles(x, y, w, h, c));
+                    } else if (user_action == Figura.RETANGULO) {
+                        //shape.add(new Oval(x, y, w, h, c));
+                    } else if (user_action == Figura.CIRCULO) {
+                        //
+                    } else if (user_action == Figura.FREE) {
+
+                    }
+
+                    repaint();
+                    setCursor(
+                        Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            }
+
         });
+
 
     }//final construtor
 
